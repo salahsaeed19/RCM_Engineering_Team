@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <br>
+  <div class="container" style="margin-right: 60px;">
+    <div class="row">
+      <div class="col-lg-8">
+        {% if posts %}
+          {% for post in posts %}
+            <!-- Blog post -->
+            <div class="card mb-4">
+              <a href="{% url 'post_detail' post.id %}">
+                <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 850px; max-height: 350px; object-fit:contain" />
+              </a>
+              <div class="card-body">
+                <div class="small text-muted">{{ post.created_at|date:"F d, Y" }}</div>
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.bio }}</p>
+                <a class="btn btn-primary" href="{% url 'post_detail' post.id %}">Read more →</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No posts available.</p>
+        {% endif %}
+      </div>
+
+      <!-- Side widgets -->
+      <div class="col-lg-4">
+        <!-- Search widget -->
+        <div class="card mb-4">
+          <div class="card-header">Search</div>
+          <div class="card-body">
+            <form method="GET" action="{% url 'search_posts' %}">
+              <div class="input-group">
+                <input class="form-control" type="text" name="q" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                <button class="btn btn-primary" id="button-search" type="submit">Go!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Categories widget -->
+        <div class="card mb-4">
+          <div class="card-header">Categories</div>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              {% for category in categories %}
+                <li><a href="{% url 'filter_posts_by_category' category.id %}">{{ category.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <!-- Side widget -->
+        <div class="card mb-4">
+          <div class="card-header">Side Widget</div>
+          <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use and feature the Bootstrap 5 card component!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
