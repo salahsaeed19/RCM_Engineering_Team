@@ -1,15 +1,15 @@
-{% extends 'base-fullscreen.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
+
+    {% include 'includes/header.html' %}
     
     <main>
-        <section class="section section-xl pb-6 pb-md-7 pt-5 pt-lg-6 o-hidden d-flex flex-column justify-content-center bg-soft">
+        <section class="section-header bg-primary text-white pb-10 pb-sm-8 pb-lg-7">
             <div class="container z-2">
                 <div class="row justify-content-center text-center align-items-center">
                     <div class="col-12 mb-4">
-                        <br>
-                        <br>
                         <h1 class="display-3 mb-lg-3 font-weight-bold">Engineering Summaries</h1>
                         <h2 class="text-lg font-weight-light">Explore a collection of free and premium engineering summaries
                             designed and curated by the RCM Engineering Team. Join our community of learners and professionals!</h2>
@@ -17,8 +17,13 @@
                     <div class="col-12 col-lg-8">
                         <form method="GET" action="{% url 'search_summaries' %}" class="mb-3">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="q" placeholder="Search summaries...">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <input type="text" class="form-control form-control-lg rounded-start" name="q" placeholder="Search summaries...">
+                                <button class="btn btn-tertiary" type="submit">
+                                    <span class="icon icon-xs me-1">
+                                        <span class="fas fa-search"></span>
+                                    </span>
+                                    Search
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -97,7 +102,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                {% endif %}
+                                {% endif %} 
                             </div>
                         </div>
                     </div>
@@ -105,4 +110,5 @@
             </div>
         </section>
     </main>
+
 {% endblock %}

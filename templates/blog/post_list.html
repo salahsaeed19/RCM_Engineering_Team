@@ -3,6 +3,80 @@
 
 {% block title %}Blog Home - RCM Engineering Team{% endblock title %}
 {% block content %}
+
+  {% include 'includes/header.html' %}
+  
+  <main>
+    <section class="section-header bg-primary text-white pb-8">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-12 col-md-8 text-center">
+                  <h1 class="display-2 mb-4">Welcome to Our Engineering Blog</h1>
+                  <p class="lead">Explore the latest insights, innovations, and expertise from the RCM Engineering Team.</p>
+              </div>
+          </div>
+      </div>
+    </section> 
+    <section class="section section-lg line-bottom-light">
+        <div class="container mt-n10 mt-lg-n12 z-2">
+            <div class="row">
+              <div class="col-lg-12 mb-5"></div>
+              {% if postss %}
+                {% for post in postss %}
+                  <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-5">
+                    <div class="card shadow bg-white border-gray-300 p-4 rounded">
+                      <a href="{% url 'post_detail' post.id %}">
+                        <img src="{{ post.image.url }}" style="height: 213px; width: 920px" class="card-img-top rounded" alt="{{ post.title }}">
+                      </a>
+                      <div class="card-body p-0 pt-4">
+                        <a href="{% url 'post_detail' post.id %}" class="h4">
+                          {{ post.title }}
+                        </a>
+                            <a href="{% url "profile" post.author.id %}" class="d-flex align-items-center my-3">
+                              <img class="avatar avatar-sm rounded-circle" src="{{ post.author.profile.get_avatar }}" alt="{{ post.author.profile.get_full_name }}">
+                              <h3 class="h6 small ms-2 mb-0">{{ post.author.username }}</h3>
+                            </a>
+                          <p class="mb-0">
+                            {{ post.bio }}
+                          </p>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+                  <nav class="blog-pagination justify-content-center d-flex">
+                    {% if postss.has_other_pages %}
+                      <div class="pagination_wrap">
+                          <ul class="pagination">
+                              {% if postss.has_previous %}
+                                <li class="page-item">
+                                  <a href="?page={{ postss.previous_page_number }}" class="page-link" aria-label="Previous">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                  </a>
+                                </li>
+                              {% endif %}
+                              {% for i in postss.paginator.page_range %}
+                                <li class="page-item {% if postss.number == i %}active{% endif %}">
+                                  <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                </li>
+                              {% endfor %}
+                              {% if postss.has_next %}
+                                <li class="page-item">
+                                  <a href="?page={{ postss.next_page_number }}" class="page-link" aria-label="Next">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                  </a>
+                                </li>
+                              {% endif %}
+                          </ul>
+                      </div>
+                    {% endif %}
+                </nav>
+              {% else %}
+                <p>No posts available.</p>
+              {% endif %}
+            </div>
+        </div>
+    </section>
+{% comment %} </main>
   <br>
   <header class="py-5 bg-light border-bottom mb-4">
     <div class="container">
@@ -30,40 +104,14 @@
               </div>
             </div>
           {% endfor %}
-            <nav class="blog-pagination justify-content-center d-flex">
-              {% if postss.has_other_pages %}
-                <div class="pagination_wrap">
-                    <ul class="pagination">
-                        {% if postss.has_previous %}
-                          <li class="page-item">
-                            <a href="?page={{ postss.previous_page_number }}" class="page-link" aria-label="Previous">
-                              <i class="fa-solid fa-chevron-left"></i>
-                            </a>
-                          </li>
-                        {% endif %}
-                        {% for i in postss.paginator.page_range %}
-                          <li class="page-item {% if postss.number == i %}active{% endif %}">
-                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                          </li>
-                        {% endfor %}
-                        {% if postss.has_next %}
-                          <li class="page-item">
-                            <a href="?page={{ postss.next_page_number }}" class="page-link" aria-label="Next">
-                              <i class="fa-solid fa-chevron-right"></i>
-                            </a>
-                          </li>
-                        {% endif %}
-                    </ul>
-                </div>
-              {% endif %}
-          </nav>
+            
         {% else %}
           <p>No posts available.</p>
         {% endif %}
-      </div>
+      </div> {% endcomment %}
 
       <!-- Side widgets -->
-      <div class="col-lg-4">
+      {% comment %} <div class="col-lg-4">
         <!-- Search widget -->
         <div class="card mb-4">
           <div class="card-header">Search</div>
@@ -100,5 +148,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> {% endcomment %}
 {% endblock %}

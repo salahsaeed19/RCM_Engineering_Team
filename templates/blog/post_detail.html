@@ -6,8 +6,12 @@
 {% endblock title %}
 
 {% block content %}
+
+  {% include 'includes/header_black.html' %}
   
   <div class="container mt-5" style="margin-right: 100px;">
+    <br> <br>
+    <br> <br>
     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
       <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
