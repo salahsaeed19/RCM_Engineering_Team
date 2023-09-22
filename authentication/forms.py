@@ -70,6 +70,8 @@ class ProfileForm(forms.ModelForm):
             'address',
             'university_name',
             'university_major_name',
+            'bio',
+            
         ]
     
     def __init__(self, *args, **kwargs):

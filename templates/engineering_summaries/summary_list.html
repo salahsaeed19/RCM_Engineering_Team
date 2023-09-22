@@ -1,0 +1,108 @@
+{% extends 'base-fullscreen.html' %}
+{% load static %}
+
+{% block content %}
+    
+    <main>
+        <section class="section section-xl pb-6 pb-md-7 pt-5 pt-lg-6 o-hidden d-flex flex-column justify-content-center bg-soft">
+            <div class="container z-2">
+                <div class="row justify-content-center text-center align-items-center">
+                    <div class="col-12 mb-4">
+                        <br>
+                        <br>
+                        <h1 class="display-3 mb-lg-3 font-weight-bold">Engineering Summaries</h1>
+                        <h2 class="text-lg font-weight-light">Explore a collection of free and premium engineering summaries
+                            designed and curated by the RCM Engineering Team. Join our community of learners and professionals!</h2>
+                    </div>
+                    <div class="col-12 col-lg-8">
+                        <form method="GET" action="{% url 'search_summaries' %}" class="mb-3">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q" placeholder="Search summaries...">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section pt-4 pb-7 bg-white">
+            <div class="container">
+                <nav class="mt-n6">
+                    <div class="nav nav-tabs flex-column flex-lg-row justify-content-center shadow-sm border-soft bg-white rounded mb-6 p-2 p-lg-4">
+                        <a href="{% url 'summary_list' %}" class="nav-item nav-link mr-lg-3">All Summaries</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Mechanical' %}" class="nav-item nav-link mr-lg-3">Mechanical</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Electrical' %}" class="nav-item nav-link mr-lg-3">Electrical</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Civil' %}" class="nav-item nav-link mr-lg-3">Civil</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Computer' %}" class="nav-item nav-link mr-lg-3">Computer</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Other' %}" class="nav-item nav-link mr-lg-3">Other</a>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="col-12">
+                        <!-- List of Summaries -->
+                        <div class="section section-lg pt-0">
+                            <div class="container">
+                                {% if summaries %}
+                                    <div class="row mb-5">
+                                        {% for summary in summaries %}
+                                            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                                                <div class="card shadow">
+                                                    <img src="{{ summary.image.url }}" class="card-img-top rounded-top" alt="{{ summary.title }}">
+                                                    <div class="card-body">
+                                                        <div class="media d-flex align-items-center justify-content-between">
+                                                            <div class="post-group">
+                                                                <a href="{% url "profile" summary.author.id %}" data-toggle="tooltip" data-placement="top" title=""
+                                                                    data-original-title="{{ summary.author.get_full_name }}">
+                                                                    <img class="avatar-sm me-2 img-fluid rounded-circle"
+                                                                        src="{{ summary.author.profile.avatar.url }}"
+                                                                        alt="{{ summary.author.get_full_name }}">
+                                                                    {{ summary.author.username }}
+                                                                </a>
+                                                            </div>
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="small">
+                                                                    <span class="far fa-calendar-alt me-2"></span>
+                                                                    {{ summary.created_at|date:"d F Y" }}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <h3 class="h5 card-title mt-4">{{ summary.title }}</h3>
+                                                        <p class="card-text">{{ summary.content|truncatewords:30 }}</p>
+                                                        <a href="{% url 'summary_detail' summary.id %}" class="btn btn-primary btn-sm">Learn More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="row justify-content-center">
+                                        <div class="col-12 col-lg-10">
+                                            <div class="card shadow mb-6">
+                                                <div class="card-body px-5 py-5 text-center text-md-left">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-6">
+                                                            <h2 class="mb-3">No summaries available</h2>
+                                                            <p class="mb-0">There are currently no engineering summaries available.</p>
+                                                        </div>
+                                                        <div class="col-12 col-md-6 mt-4 mt-md-0 text-md-right">
+                                                            <a href="{% url "contact_us" %}" class="btn btn-primary">
+                                                                <span class="me-1">
+                                                                    <span class="fas fa-headphones"></span>
+                                                                </span>
+                                                                Contact Us
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

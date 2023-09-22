@@ -3,6 +3,8 @@ from .models import Post, Category, Comment
 from .forms import PostForm, CommentForm
 from django.db.models import Q
 from django.contrib import messages
+from collections import Counter
+from django.core.paginator import Paginator
 
 
 def post_list(request):
@@ -15,7 +17,20 @@ def post_list(request):
             Q(content__icontains=query) |
             Q(author__username__icontains=query)
         ).distinct()
-    context = {'posts': posts, 'categories': categories}
+
+    recent_posts = Post.objects.order_by('-created_at')[:4]
+    paginator = Paginator(posts, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    categories = [post.category for post in posts]
+    category_counts = dict(Counter(categories))
+    context = {
+        'postss': page_obj,
+        'recent_posts': recent_posts,
+        # 'posts': posts,
+        'categories': categories, 
+        'category_counts': category_counts
+        }
     return render(request, 'blog/post_list.html', context)
 
 
@@ -58,14 +73,14 @@ def search_posts(request):
         posts = Post.objects.filter(Q(title__icontains=query))
     else:
         posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/post_list.html', {'postss': posts})
 
 
 def filter_posts_by_category(request, category_id):
     # Filter posts by category
     category = get_object_or_404(Category, pk=category_id)
     posts = Post.objects.filter(category=category)
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/post_list.html', {'postss': posts})
 
 
 def add_comment(request, post_id):

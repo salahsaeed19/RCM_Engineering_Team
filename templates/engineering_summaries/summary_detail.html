@@ -1,0 +1,29 @@
+{% extends 'base-fullscreen.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <img src="{{ summary.image.url }}" class="card-img-top" alt="{{ summary.title }}">
+                <div class="card-body">
+                    <h2 class="card-title">{{ summary.title }}</h2>
+                    <p class="card-subtitle text-muted">
+                        Category: {{ summary.get_category_display }}
+                        <br>
+                        Author: {{ summary.author }}
+                        <br>
+                        Date: {{ summary.created_at|date:"F d, Y" }}
+                    </p>
+                    {% if summary.source_link %}
+                    <p class="card-text">Source: <a href="{{ summary.source_link }}" target="_blank">{{ summary.source_link }}</a></p>
+                    {% endif %}
+                    <hr>
+                    <p class="card-text">{{ summary.content | safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

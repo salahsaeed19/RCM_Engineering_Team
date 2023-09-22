@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 
+{% block title %}Blog Home - RCM Engineering Team{% endblock title %}
 {% block content %}
   <br>
+  <header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">Welcome to Blog Home!</h1>
+            <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
+        </div>
+    </div>
+  </header>
   <div class="container" style="margin-right: 60px;">
     <div class="row">
       <div class="col-lg-8">
-        {% if posts %}
-          {% for post in posts %}
+        {% if postss %}
+          {% for post in postss %}
             <!-- Blog post -->
             <div class="card mb-4">
               <a href="{% url 'post_detail' post.id %}">
@@ -20,6 +30,33 @@
               </div>
             </div>
           {% endfor %}
+            <nav class="blog-pagination justify-content-center d-flex">
+              {% if postss.has_other_pages %}
+                <div class="pagination_wrap">
+                    <ul class="pagination">
+                        {% if postss.has_previous %}
+                          <li class="page-item">
+                            <a href="?page={{ postss.previous_page_number }}" class="page-link" aria-label="Previous">
+                              <i class="fa-solid fa-chevron-left"></i>
+                            </a>
+                          </li>
+                        {% endif %}
+                        {% for i in postss.paginator.page_range %}
+                          <li class="page-item {% if postss.number == i %}active{% endif %}">
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                          </li>
+                        {% endfor %}
+                        {% if postss.has_next %}
+                          <li class="page-item">
+                            <a href="?page={{ postss.next_page_number }}" class="page-link" aria-label="Next">
+                              <i class="fa-solid fa-chevron-right"></i>
+                            </a>
+                          </li>
+                        {% endif %}
+                    </ul>
+                </div>
+              {% endif %}
+          </nav>
         {% else %}
           <p>No posts available.</p>
         {% endif %}
@@ -45,8 +82,13 @@
           <div class="card-header">Categories</div>
           <div class="card-body">
             <ul class="list-unstyled mb-0">
-              {% for category in categories %}
-                <li><a href="{% url 'filter_posts_by_category' category.id %}">{{ category.name }}</a></li>
+              <li>
+                <a href="{% url 'post_list' %}" class="d-flex">All Categories</a>
+              </li>
+              {% for category, count in category_counts.items %}
+                <li>
+                    <a href="{% url 'filter_posts_by_category' category.id %}" class="d-flex">{{ category }} ({{ count }})</a>
+                </li>
               {% endfor %}
             </ul>
           </div>

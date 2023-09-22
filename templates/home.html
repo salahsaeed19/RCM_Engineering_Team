@@ -21,59 +21,16 @@
         <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet">
         <!-- Volt CSS -->
         <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
-
+        <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/pixel.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet">
     </head>
 
     <body>
 
-        <header class="header-global">
-            <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
-                <div class="container position-relative">
-                    <div class="navbar-collapse collapse mr-auto" id="navbar_global">
-                        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-                            <li class="nav-item mr-2">
-                                <a href="{% url "home" %}" class="nav-link">Home</a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a href="" class="nav-link">Educational Resources</a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a href="" class="nav-link">Workshops</a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a href="{% url "post_list" %}" class="nav-link">Community</a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a href="" class="nav-link">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="d-flex align-items-center ml-auto">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'profile' user.id %}" class="btn btn-secondary text-dark mr-md-3">
-                                <span class="fas fa-user mr-2"></span>Profile
-                            </a>
-                            <a href="{% url 'logout' %}" class="btn btn-outline-soft d-none d-lg-block">
-                                <span class="fas fa-sign-out-alt mr-2"></span>Log Out
-                            </a>
-                            <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        {% else %}
-                            <a href="{% url 'login' %}" class="btn btn-secondary text-dark mr-md-3">
-                                <span class="fas fa-sign-in-alt mr-2"></span>Log in
-                            </a>
-                            <a href="{% url 'signup' %}" class="btn btn-outline-soft d-none d-lg-block">
-                                <span class="fas fa-user-plus mr-2"></span>Sign Up
-                            </a>
-                            <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                        {% endif %}
-                    </div>                                       
-                </div>
-            </nav>
-        </header>
+        {% include 'includes/header.html' %}
 
         <main>
             <!-- Hero -->
@@ -87,9 +44,12 @@
                                 <h2 class="h3 text-muted mr-3">Empowering Engineering Students</h2>
                             </div>
                             <!-- Button Modal -->
-                            <div class="d-flex justify-content-center align-items-end flex-wrap mb-6">
-                                <a href="#" class="btn btn-secondary text-dark mr-4 mb-3 mb-lg-0"><span class="fas fa-chart-line mr-2 d-none d-sm-inline"></span> Dashboard Demo</a>
-                            </div>
+                            {% comment %} <div class="d-flex justify-content-center align-items-end flex-wrap mb-6">
+                                <a href="#" class="btn btn-secondary text-dark mr-4 mb-3 mb-lg-0">
+                                    <span class="fas fa-chart-line mr-2 d-none d-sm-inline"></span> 
+                                    Dashboard Demo
+                                </a>
+                            </div> {% endcomment %}
                             <div class="d-flex justify-content-center flex-column mb-6">
                                 <a href="#" target="_blank">
                                     <img src="{% static "img/brand/rcmengteam.svg" %}" class="d-block mx-auto mb-3" height="25" width="25" alt="RCM Engineering Team Logo">
@@ -407,6 +367,29 @@
                     </div>                              
                 </div>
             </section>
+            <section class="section section-md">
+                <div class="container">
+                    <div class="row align-items-center justify-content-around">
+                        <div class="col-md-6 col-xl-6 mb-5">
+                            <img class="organic-radius img-fluid" src="{% static "img/about-us-1.jpg" %}" alt="Office Desk">
+                        </div>
+                        <div class="col-md-6 col-xl-5 text-center text-md-left">
+                            <h2 class="h1 mb-5">All challenges accepted.</h2>
+                            <p class="lead">
+                                Themesberg is an experienced and passionate group of designers, developers, project
+                                managers, writers and artists. Every client we work with becomes a part of the team. Together we
+                                face the challenges and celebrate the victories.
+                            </p>
+                            <p class="lead">
+                                With a culture of collaboration, a roster of talent, and several office pooches, the
+                                Themesberg team is active in the creative community, endlessly interested in what’s next, and
+                                generally pleasant to be around.
+                            </p>
+                            <img src="{% static "img/signature.svg" %}" alt="signature" class="mt-4" width="150">
+                        </div>
+                    </div>
+                </div>
+            </section>
             {% comment %} <section class="section section-lg bg-white">
                 <div class="container">
                     <div class="row">
@@ -486,80 +469,7 @@
             </section> {% endcomment %}
         </main>
 
-        <footer class="footer py-6 bg-primary text-white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="navbar-brand-dark mb-4" height="35" src="{% static "img/team-logo.png" %}" alt="RCM Engineering Team Logo">
-                        <p>The RCM Engineering Team is dedicated to supporting and improving the experience of engineering students through study summaries, educational workshops, and community engagement.</p>
-                        <ul class="social-buttons mb-5 mb-lg-0">
-                            <li>
-                                <a href="https://twitter.com/rcmengteam" target="_blank" aria-label="Twitter social link" class="icon-white mr-2">
-                                    <span class="fab fa-twitter"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.facebook.com/fareeqrcm" target="_blank" class="icon-white mr-2" aria-label="Facebook social link">
-                                    <span class="fab fa-facebook"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.instagram.com/rcm.engineering.team" target="_blank" aria-label="Instagram social link" class="icon-white mr-2">
-                                    <span class="fab fa-instagram"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://t.me/rcm_eng_gaza" target="_blank" aria-label="Telegram social link" class="icon-white mr-2">
-                                    <span class="fab fa-telegram"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://www.youtube.com/@rcm6361" target="_blank" aria-label="Youtube social link" class="icon-white mr-2">
-                                    <span class="fab fa-youtube"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="h5">RCM Engineering Team</span>
-                        <ul class="links-vertical mt-2">
-                            <li><a target="_blank" href="#">Educational Workshops</a></li>
-                            <li><a target="_blank" href="#">Community Engagement</a></li>
-                            <li><a target="_blank" href="#">Volunteer Activities</a></li>
-                            <li><a target="_blank" href="#">Competitions</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-4">
-                        <span class="h5 mb-3 d-block">Subscribe</span>
-                        <form action="post">
-                            <div class="form-row mb-2">
-                                <div class="col-12">
-                                    <input type="email" class="form-control mb-2" placeholder="your.email@example.com" name="email" aria-label="Subscribe form" required>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn btn-secondary text-dark shadow-soft btn-block" data-loading-text="Sending">
-                                        <span>Subscribe</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                        <p class="text-muted font-small m-0">We'll keep you updated on our activities and educational resources. See our <a class="text-white" href="#">Privacy Policy</a></p>
-                    </div>
-                </div>            
-                <hr class="bg-gray my-5">
-                <div class="row">
-                    <div class="col mb-md-0">
-                        <a href="https://github.com/salahsaeed19" target="_blank" class="d-flex justify-content-center">
-                            <img src="{% static "" %}" height="25" class="mb-3" alt="Salah Logo">
-                        </a>
-                    <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                        <p class="font-weight-normal font-small mb-0">
-                            &copy; <span class="current-year">2023</span> RCM Engineering Team - coded by <a target="_blank" href="https://github.com/salahsaeed19">Salah El-Din Abu Saif</a>.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {% include 'includes/footer.html' %}
 
         {% include 'includes/scripts.html' %}
 

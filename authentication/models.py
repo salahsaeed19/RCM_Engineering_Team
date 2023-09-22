@@ -19,6 +19,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     university_name = models.CharField(max_length=255, null=True, blank=True)
     university_major_name = models.CharField(max_length=255, null=True, blank=True)
+    bio = models.TextField(max_length=5000, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -60,3 +60,7 @@ def profile_view(request, user_id):
         form = ProfileForm(instance=profile)
 
     return render(request, 'accounts/profile.html', {'profile': profile, 'form': form})
+
+
+def profile(request):
+    return render(request, 'accounts/profile_pro.html')
