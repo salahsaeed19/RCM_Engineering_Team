@@ -7,79 +7,114 @@
 
 {% block content %}
 
-  {% include 'includes/header_black.html' %}
-  
-  <div class="container mt-5" style="margin-right: 100px;">
-    <br> <br>
-    <br> <br>
-    <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-      <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
-          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{% url 'post_list' %}">Blogs</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
-      </ol>
-    </nav>
-    <div class="row">
-      <div class="col-lg-12">
-        <!-- Post content-->
-        <article>
-          <!-- Post header-->
-          <header class="mb-4">
-            <!-- Post title-->
-            <h1 class="fw-bolder mb-1">{{ post.title }}</h1>
-            <!-- Post meta content-->
-            <div class="text-muted fst-italic mb-2">
-              Posted on {{ post.publish_date|date:"F d, Y" }} by <a href="{% url "profile" post.author.id %}" >{{ post.author.username }}</a>
+  {% include 'includes/header.html' %}
+
+  <main>
+    <section class="section-header pb-5 pb-sm-7 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 text-center">
+                    <div class="mb-4">
+                      <a href="" class="badge bg-warning text-uppercase px-3">
+                        {{ post.category.name }}
+                      </a>
+                    </div>
+                    <h1 class="display-3 mb-4 px-lg-5">
+                      {{ post.title }}
+                    </h1>
+                    <div class="post-meta">
+                      <span class="fw-bold me-3">
+                        {{ post.author.username }}
+                      </span>
+                      <span class="post-date me-3">
+                        {{ post.publish_date|date:"F d, Y" }}
+                      </span>
+                      <span class="fw-bold">
+                        7 min read
+                      </span>
+                    </div>
+                </div>
             </div>
-            <!-- Post categories-->
-            <a class="badge bg-secondary text-decoration-none link-light">{{ post.category.name }}</a>
-          </header>
-          <!-- Preview image figure-->
-          <figure class="">
-            <img class="img-fluid rounded" style="max-width: 1500px; max-height: 350px;" src="{{ post.image.url }}" alt="{{ post.title }}" />
-          </figure>
-          <!-- Post content-->
-          <section class="mb-5">
-            <p class="fs-5 mb-4">{{ post.content }}</p>
-          </section>
+        </div>
+    </section>
+    <div class="section section-sm bg-white pt-5 pt-lg-6 text-black">
+        <article class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <p>
+                      <img class="rounded" src="{{ post.image.url }}" alt="{{ post.title }}" />
+                    </p>
+                    <h2>Setup</h2>
+                    <p>{{ post.content }}</p>
+                </div>
+            </div>
         </article>
-        <!-- Comments section-->
-        <section class="mb-5">
-          <div class="card bg-light">
-            <div class="card-body">
-              <!-- Comment form-->
-              <form method="POST" action="{% url 'add_comment' post.id %}" class="mb-4">
-                {% csrf_token %}
-                <textarea class="form-control" name="body" rows="5" placeholder="Join the discussion and leave a comment!"></textarea>
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
-              </form>
-              <!-- Comments -->
-              {% if comments %}
-                {% for comment in comments %}
-                  <!-- Single comment-->
-                  <div class="d-flex mb-4">
-                    <div class="flex-shrink-0">
-                      <img class="rounded-circle" src="{{ comment.user_id.profile.avatar.url }}" width="50" />&nbsp; 
-                    </div>
-                    <div class="ms-3">
-                      <div clas="d-flex justify-content-between w-100">
-                        <a href="{% url 'profile' comment.user_id.id %}" class="comment-author d-block" >
-                          <span class="name font-weight-bold">{{ comment.user_id.username }}</span>
-                        </a>
-                        <span class="d-block">{{ comment.created_at|date:"h:i A, F d" }}</span><br>
-                      </div>
-                      <div class="comment-body"> {{ comment.body }}</div>
-                    </div>
-                  </div>
-                {% endfor %}
-              {% else %}
-                <p>No comments yet.</p>
-              {% endif %}
-            </div>
-          </div>
-        </section>
-      </div>
     </div>
-  </div>
+    <div class="section section-md bg-white text-black pt-0 line-bottom-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div>
+                        <label class="h5 mb-4" for="exampleFormControlTextarea1">
+                            <span class="badge badge-md bg-primary text-uppercase me-2">23</span> Comments
+                        </label>
+                        <form method="POST" action="{% url 'add_comment' post.id %}" class="mb-4">
+                          {% csrf_token %}
+                          <textarea class="form-control border border-gray-300-gray" name="body" placeholder="Add your comment" rows="6" maxlength="1000"></textarea>
+                          <div class="d-flex justify-content-between mt-3">
+                              <small class="fw-light text-dark">
+                                  <span id="charactersRemaining">1000</span>
+                                  characters remaining
+                              </small>
+                              <button type="submit" class="btn btn-primary animate-up-2">
+                                  Send
+                              </button>
+                          </div>
+                        </form>
+                        {% if comments %}
+                          {% for comment in comments %}
+                            <div class="mt-5">
+                                <div class="card bg-gray-200 border-gray-300 rounded p-4 mb-4">
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <span class="font-small">
+                                            <a href="#">
+                                                <img class="avatar-sm img-fluid rounded-circle me-2" src="{{ comment.user_id.profile.avatar.url }}" alt="avatar">
+                                                <span class="fw-bold">
+                                                    {{ comment.user_id.username }}
+                                                </span>
+                                            </a>
+                                            <span class="ms-2">
+                                              {{ comment.created_at|date:"h:i A, F d" }}
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <p class="m-0">
+                                      {{ comment.body }}
+                                    </p>
+                                    <div class="mt-4 mb-3 d-flex justify-content-between">
+                                      <div>
+                                          <span class="far fa-thumbs-up text-action text-success me-3" data-original-title="Like comment" data-bs-original-title="Like comment" aria-label="Like comment"></span>
+                                          <span class="far fa-thumbs-down text-action text-danger me-3" data-original-title="Dislike comment" data-bs-original-title="Dislike comment" aria-label="Dislike comment"></span>
+                                      </div>
+                                  </div>
+                                </div>
+                                {% endfor %}
+                              {% else %}
+                                <p>No comments yet.</p>
+                              {% endif %}
+                            <div class="mt-5 text-center">
+                                <button class="btn btn-primary btn-loading-overlay me-2 mb-2">
+                                    <span class="ms-1 btn-inner-text">
+                                        Load more comments
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
 {% endblock %}
 

@@ -146,9 +146,7 @@
                                         </div>
                                         <div class="mb-4">
                                             <label for="bio">Bio</label>
-                                            <textarea rows="10" name="bio" class="form-control text-gray" id="bio" required>
-                                                {{ profile.bio|default:'' }}
-                                            </textarea>
+                                            <textarea rows="10" name="bio" class="form-control text-gray" id="bio" required>{{ profile.bio|default:'' }}</textarea>
                                         </div>
                                         {% if profile.user.id == request.user.id %}
                                             <div class="mt-2">
