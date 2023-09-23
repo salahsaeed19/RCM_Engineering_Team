@@ -48,6 +48,7 @@ def signup(request):
     return render(request, "accounts/signup.html", {"form": form, "msg": msg, "success": success})
 
 
+@login_required
 def profile_view(request, user_id):
     profile, created = Profile.objects.get_or_create(user_id=user_id)
 

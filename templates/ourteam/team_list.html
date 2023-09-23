@@ -15,28 +15,41 @@
                 </div>
             </div>
         </section>
-        
         <section class="section section-lg pt-0">
             <div class="container mt-n8 mt-lg-n10 z-2">
                 <div class="row mt-7">
                     {% for member in team_members %}
                         <div class="col-12 col-md-6 col-lg-4 mb-7">
                             <div class="card shadow border-gray-300 text-center">
-                                <div class="profile-thumbnail mx-auto mt-n6"><img
-                                        src="{{ member.image.url }}"
-                                        class="card-img-top rounded-circle border-0" alt="{{ member.first_name }}"></div>
+                                <div class="profile-thumbnail mx-auto mt-n6">
+                                    <img src="{{ member.image.url }}" class="card-img-top rounded-circle border-0" alt="{{ member.first_name }}">
+                                </div>
                                 <div class="card-body">
-                                    <h2 class="h4 card-title mb-2">{{ member.first_name }}  {{ member.last_name }}</h2><span
-                                        class="card-subtitle text-gray fw-normal">{{ member.job_title }}</span>
+                                    <h2 class="h4 card-title mb-2">{{ member.first_name }}  {{ member.last_name }}</h2>
+                                    <span class="card-subtitle text-gray fw-normal">
+                                        {{ member.job_title }}
+                                    </span>
                                     <ul class="list-unstyled d-flex justify-content-center mt-3 mb-0">
-                                        <li><a href="#" target="_blank" aria-label="facebook social link"
-                                                class="text-facebook me-3"><span class="fab fa-facebook-f"></span></a></li>
-                                        <li><a href="#" target="_blank" aria-label="twitter social link"
-                                                class="text-twitter me-3"><span class="fab fa-twitter"></span></a></li>
-                                        <li><a href="#" target="_blank" aria-label="slack social link"
-                                                class="text-slack me-3"><span class="fab fa-slack-hash"></span></a></li>
-                                        <li><a href="#" target="_blank" aria-label="dribbble social link"
-                                                class="text-dribbble"><span class="fab fa-dribbble"></span></a></li>
+                                        <li>
+                                            <a href="#" target="_blank" aria-label="facebook social link" class="text-facebook me-3">
+                                                <span class="fab fa-facebook-f"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" aria-label="twitter social link" class="text-twitter me-3">
+                                                <span class="fab fa-twitter"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" aria-label="slack social link" class="text-slack me-3">
+                                                <span class="fab fa-slack-hash"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" target="_blank" aria-label="dribbble social link" class="text-dribbble">
+                                                <span class="fab fa-dribbble"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                     <p class="card-text my-2">{{ member.bio }}</p>
                                 </div>
@@ -60,4 +73,5 @@
             </div>
         </section>        
     </main>
+    
 {% endblock %}

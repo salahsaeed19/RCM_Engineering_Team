@@ -1,107 +1,107 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-  Post: {{ post.title }}
-{% endblock title %}
+{% block title %} Post: {{ post.title }} {% endblock title %}
 
 {% block content %}
 
-  {% include 'includes/header.html' %}
+    {% include 'includes/header.html' %}
 
-  <main>
-    <section class="section-header pb-5 pb-sm-7 bg-primary text-white">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-10 text-center">
-                    <div class="mb-4">
-                      <a href="" class="badge bg-warning text-uppercase px-3">
-                        {{ post.category.name }}
-                      </a>
-                    </div>
-                    <h1 class="display-3 mb-4 px-lg-5">
-                      {{ post.title }}
-                    </h1>
-                    <div class="post-meta">
-                      <span class="fw-bold me-3">
-                        {{ post.author.username }}
-                      </span>
-                      <span class="post-date me-3">
-                        {{ post.publish_date|date:"F d, Y" }}
-                      </span>
-                      <span class="fw-bold">
-                        7 min read
-                      </span>
+    <main>
+        <section class="section-header pb-5 pb-sm-7 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-10 text-center">
+                        <div class="mb-4">
+                            <a href="" class="badge bg-warning text-uppercase px-3">
+                                {{ post.category.name }}
+                            </a>
+                        </div>
+                        <h1 class="display-3 mb-4 px-lg-5">
+                            {{ post.title }}
+                        </h1>
+                        <div class="post-meta">
+                            <span class="fw-bold me-3">
+                                {{ post.author.username }}
+                            </span>
+                            <span class="post-date me-3">
+                                {{ post.publish_date|date:"F d, Y" }}
+                            </span>
+                            <span class="fw-bold">
+                                7 min read
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+        <div class="section section-sm bg-white pt-5 pt-lg-6 text-black">
+            <article class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <p>
+                            <img class="rounded" src="{{ post.image.url }}" alt="{{ post.title }}" />
+                        </p>
+                        <h2>Setup</h2>
+                        <p>
+                            {{ post.content }}
+                        </p>
+                    </div>
+                </div>
+            </article>
         </div>
-    </section>
-    <div class="section section-sm bg-white pt-5 pt-lg-6 text-black">
-        <article class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <p>
-                      <img class="rounded" src="{{ post.image.url }}" alt="{{ post.title }}" />
-                    </p>
-                    <h2>Setup</h2>
-                    <p>{{ post.content }}</p>
-                </div>
-            </div>
-        </article>
-    </div>
-    <div class="section section-md bg-white text-black pt-0 line-bottom-light">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div>
-                        <label class="h5 mb-4" for="exampleFormControlTextarea1">
-                            <span class="badge badge-md bg-primary text-uppercase me-2">23</span> Comments
-                        </label>
-                        <form method="POST" action="{% url 'add_comment' post.id %}" class="mb-4">
-                          {% csrf_token %}
-                          <textarea class="form-control border border-gray-300-gray" name="body" placeholder="Add your comment" rows="6" maxlength="1000"></textarea>
-                          <div class="d-flex justify-content-between mt-3">
-                              <small class="fw-light text-dark">
-                                  <span id="charactersRemaining">1000</span>
-                                  characters remaining
-                              </small>
-                              <button type="submit" class="btn btn-primary animate-up-2">
-                                  Send
-                              </button>
-                          </div>
-                        </form>
-                        {% if comments %}
-                          {% for comment in comments %}
-                            <div class="mt-5">
-                                <div class="card bg-gray-200 border-gray-300 rounded p-4 mb-4">
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <span class="font-small">
-                                            <a href="#">
-                                                <img class="avatar-sm img-fluid rounded-circle me-2" src="{{ comment.user_id.profile.avatar.url }}" alt="avatar">
-                                                <span class="fw-bold">
-                                                    {{ comment.user_id.username }}
-                                                </span>
-                                            </a>
-                                            <span class="ms-2">
-                                              {{ comment.created_at|date:"h:i A, F d" }}
-                                            </span>
-                                        </span>
-                                    </div>
-                                    <p class="m-0">
-                                      {{ comment.body }}
-                                    </p>
-                                    <div class="mt-4 mb-3 d-flex justify-content-between">
-                                      <div>
-                                          <span class="far fa-thumbs-up text-action text-success me-3" data-original-title="Like comment" data-bs-original-title="Like comment" aria-label="Like comment"></span>
-                                          <span class="far fa-thumbs-down text-action text-danger me-3" data-original-title="Dislike comment" data-bs-original-title="Dislike comment" aria-label="Dislike comment"></span>
-                                      </div>
-                                  </div>
+        <div class="section section-md bg-white text-black pt-0 line-bottom-light">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-8">
+                        <div>
+                            <label class="h5 mb-4" for="exampleFormControlTextarea1">
+                                <span class="badge badge-md bg-primary text-uppercase me-2">{{ post.comment_set.count }}</span> Comments
+                            </label>
+                            <form method="POST" action="{% url 'add_comment' post.id %}" class="mb-4">
+                                {% csrf_token %}
+                                <textarea class="form-control border border-gray-300-gray" name="body" placeholder="Add your comment" rows="6" maxlength="1000"></textarea>
+                                <div class="d-flex justify-content-between mt-3">
+                                    <small class="fw-light text-dark">
+                                        <span id="charactersRemaining">1000</span>characters remaining
+                                    </small>
+                                    <button type="submit" class="btn btn-primary animate-up-2">
+                                        Send
+                                    </button>
                                 </div>
+                            </form>
+                            {% if comments %}
+                                {% for comment in comments %}
+                                    <div class="mt-5">
+                                        <div class="card bg-gray-200 border-gray-300 rounded p-4 mb-4">
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <span class="font-small">
+                                                    <a href="{% url "profile" comment.user_id.id %}">
+                                                        <img class="avatar-sm img-fluid rounded-circle me-2" src="{{ comment.user_id.profile.avatar.url }}" alt="avatar">
+                                                        <span class="fw-bold">
+                                                            {{ comment.user_id.username }}
+                                                        </span>
+                                                    </a>
+                                                    <span class="ms-2">
+                                                        {{ comment.created_at|date:"h:i A, F d" }}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <p class="m-0">
+                                                {{ comment.body }}
+                                            </p>
+                                            <div class="mt-4 mb-3 d-flex justify-content-between">
+                                                <div>
+                                                    <span class="far fa-thumbs-up text-action text-success me-3" data-original-title="Like comment" data-bs-original-title="Like comment" aria-label="Like comment"></span>
+                                                    <span class="far fa-thumbs-down text-action text-danger me-3" data-original-title="Dislike comment" data-bs-original-title="Dislike comment" aria-label="Dislike comment"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
-                              {% else %}
+                            {% else %}
                                 <p>No comments yet.</p>
-                              {% endif %}
+                            {% endif %}
                             <div class="mt-5 text-center">
                                 <button class="btn btn-primary btn-loading-overlay me-2 mb-2">
                                     <span class="ms-1 btn-inner-text">
@@ -114,7 +114,6 @@
                 </div>
             </div>
         </div>
-    </div>
-  </main>
-{% endblock %}
+    </main>
 
+{% endblock %}

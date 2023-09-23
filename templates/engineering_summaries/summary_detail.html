@@ -1,29 +1,41 @@
-{% extends 'base-fullscreen.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mb-4">
-                <img src="{{ summary.image.url }}" class="card-img-top" alt="{{ summary.title }}">
-                <div class="card-body">
-                    <h2 class="card-title">{{ summary.title }}</h2>
-                    <p class="card-subtitle text-muted">
-                        Category: {{ summary.get_category_display }}
-                        <br>
-                        Author: {{ summary.author }}
-                        <br>
-                        Date: {{ summary.created_at|date:"F d, Y" }}
-                    </p>
-                    {% if summary.source_link %}
-                    <p class="card-text">Source: <a href="{{ summary.source_link }}" target="_blank">{{ summary.source_link }}</a></p>
-                    {% endif %}
-                    <hr>
-                    <p class="card-text">{{ summary.content | safe }}</p>
+
+    {% include 'includes/header_black.html' %}
+    <br><br><br><br><br>
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="col-lg-12 mb-5">
+                            <div class="card shadow bg-white border-gray-300 flex-lg-row align-items-center g-0 p-4">
+                                <a href="{{ summary.source_link }}" class="col-12 col-lg-6" target="_blank">
+                                    <img src="{{ summary.image.url }}" alt="{{ summary.title }}" class="card-img-top rounded">
+                                </a>
+                                <div class="card-body d-flex flex-column justify-content-between col-auto py-4 p-0 p-lg-3 p-xl-5">
+                                        <h2>{{ summary.title }}</h2>
+                                    <p>
+                                        {{ summary.content | safe }}
+                                    </p>
+                                    <div class="d-flex align-items-center mt-3">
+                                        <img class="avatar avatar-sm rounded-circle" src="{{ summary.author.profile.avatar.url }}" alt="Richard avatar">
+                                        <h3 class="h6 small ms-2 mb-0">{{ summary.author }}</h3>
+                                        <span class="h6 text-muted small fw-normal mb-0 ms-auto">
+                                            <time datetime="2019-04-25">
+                                                {{ summary.created_at|date:"F d, Y" }}
+                                            </time>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </main>
+
 {% endblock %}

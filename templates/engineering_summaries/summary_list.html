@@ -44,13 +44,12 @@
                 </nav>
                 <div class="row">
                     <div class="col-12">
-                        <!-- List of Summaries -->
                         <div class="section section-lg pt-0">
                             <div class="container">
                                 {% if summaries %}
                                     <div class="row mb-5">
                                         {% for summary in summaries %}
-                                            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                                            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-4">
                                                 <div class="card shadow">
                                                     <img src="{{ summary.image.url }}" class="card-img-top rounded-top" alt="{{ summary.title }}">
                                                     <div class="card-body">
@@ -73,7 +72,7 @@
                                                         </div>
                                                         <h3 class="h5 card-title mt-4">{{ summary.title }}</h3>
                                                         <p class="card-text">{{ summary.content|truncatewords:30 }}</p>
-                                                        <a href="{% url 'summary_detail' summary.id %}" class="btn btn-primary btn-sm">Learn More</a>
+                                                        <a href="{{ summary.source_link }}" class="btn btn-primary btn-sm" target="_blank">Learn More</a>
                                                     </div>
                                                 </div>
                                             </div>
