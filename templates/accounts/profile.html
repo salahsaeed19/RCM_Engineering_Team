@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Profile - {{profile.user.username}} {% endblock %}
+{% block title %} {{profile.user.username}} ({{profile.user.get_full_name}}) {% endblock %}
 
 {% block content %}
 

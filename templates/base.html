@@ -3,23 +3,27 @@
 <html lang="en">
 
     <head>
-
+        
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="title" content="RCM Engineering Team - Engineering Solutions">
-        <meta name="author" content="RCM Engineering Team">
         <meta name="description" content="Explore engineering solutions, summaries, and insights with the RCM Engineering Team. We offer a wide range of resources and expertise to tackle engineering challenges.">
         <meta name="keywords" content="engineering solutions, RCM Engineering Team, engineering summaries, engineering insights, technical expertise, engineering challenges" />
+        <meta name="author" content="RCM Engineering Team">
+        
+        <!-- Favicon -->
         <link rel="icon" href="{% static 'img/rcm.jpg' %}" type="image/x-icon">
+
+        <!-- CSS Stylesheets -->
         <link type="text/css" href="{% static 'css/all.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet">
-        {% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"> {% endcomment %}
         <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/pixel.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet">
+
+        <!-- Additional Stylesheets (if needed) -->
         {% block stylesheets %}{% endblock stylesheets %}
 
     </head>
@@ -27,12 +31,14 @@
     <body class="{% block body_class %}{% endblock body_class %}">
 
         {% block content %}
-        
+
         {% endblock content %}
 
+        <!-- Footer Section -->
         {% include 'includes/footer.html' %}
 
-        {% include 'includes/scripts.html' %}    
+        <!-- Scripts Section -->
+        {% include 'includes/scripts.html' %}
 
     </body>
 
