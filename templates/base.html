@@ -15,16 +15,18 @@
         <link rel="icon" href="{% static 'img/rcm.jpg' %}" type="image/x-icon">
 
         <!-- CSS Stylesheets -->
-        <link type="text/css" href="{% static 'css/all.min.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet">
+
+        <link type="text/css" href="{% static 'css/all.min.css' %}" rel="stylesheet">
+        {% comment %} <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet"> {% endcomment %}
+        {% comment %} <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet"> {% endcomment %}
+        {% comment %} <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet"> {% endcomment %}
         <link type="text/css" href="{% static 'css/pixel.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet">
+        {% comment %} <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet"> {% endcomment %}
 
         <!-- Additional Stylesheets (if needed) -->
         {% block stylesheets %}{% endblock stylesheets %}
+        
 
     </head>
 

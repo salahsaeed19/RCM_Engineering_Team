@@ -8,20 +8,40 @@
     {% include 'includes/header.html' %}
 
     <main>
-        <section class="section-header bg-primary text-white pb-8">
+        <section class="section-header bg-primary pb-9 pb-lg-10 text-white">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 text-center">
-                        <h1 class="display-2 mb-4">
+                    <div class="col-12 col-md-10 text-center">
+                        <h1 class="mb-3">
                             Welcome to Our Engineering Blog
                         </h1>
-                        <p class="lead">
+                        <p class="lead px-lg-5 mb-5">
                             Explore the latest insights, innovations, and expertise from the RCM Engineering Team.
                         </p>
+                        <form method="GET" action="{% url 'search_posts' %}">
+                            <div class="form-group bg-white shadow-soft rounded-pill mb-4 px-3 py-2">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="input-group input-group-merge shadow-none">
+                                            <div class="input-group-text bg-transparent border-0">
+                                                <span class="fas fa-search"></span>
+                                            </div>
+                                            <input type="text" name="q" class="form-control border-0 form-control-flush shadow-none pb-2" placeholder="Enter search term..."  maxlength="125" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" id="button-search" class="btn btn-block btn-primary rounded-pill">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section> 
+            <div class="pattern bottom"></div>
+        </section>
         <section class="section section-lg line-bottom-light">
             <div class="container mt-n10 mt-lg-n12 z-2">
                 <div class="row">

@@ -1,4 +1,5 @@
 {% load static %}
+
     <footer class="footer py-6 bg-primary text-white">
         <div class="container">
             <div class="row">
@@ -47,7 +48,7 @@
                     <!-- <form action="post"> -->
                         <div class="form-row mb-2">
                             <div class="col-12">
-                                <input type="email" class="form-control mb-2" placeholder="your.email@example.com" name="email" aria-label="Subscribe form" required>
+                                <input type="email" class="form-control mb-2" placeholder="your.email@example.com" name="email"  maxlength="100" aria-label="Subscribe form" required>
                             </div>
                             <div class="col-12 d-grid">
                                 <button type="submit" class="btn btn-tertiary" data-loading-text="Sending">
@@ -63,7 +64,7 @@
             <div class="row">
                 <div class="col mb-md-0">
                     <a href="https://github.com/salahsaeed19" target="_blank" class="d-flex justify-content-center">
-                        <img src="{% static "img/salah.png" %}" height="25" class="mb-3" alt="Salah Logo">
+                        <img src="" height="25" class="mb-3" alt="Salah Logo">
                     </a>
                 <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
                     <p class="font-weight-normal font-small mb-0">
@@ -73,3 +74,17 @@
             </div>
         </div>
     </footer>
+    <div id="back-to-top" class="position-fixed bottom-0 end-0 p-3">
+        <button class="btn btn-success" onclick="scrollToTop()" title="Back to Top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+    <script>
+        // Function to scroll to the top of the page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>

@@ -73,13 +73,13 @@
                                             <div class="col-md-6 mb-3">
                                                 <div class="mb-3">
                                                     <label for="first_name">First Name</label>
-                                                    <input class="form-control" name="first_name" id="first_name" type="text" placeholder="Enter your first name" value="{{ profile.user.first_name }}" required>
+                                                    <input class="form-control" name="first_name" id="first_name" type="text" placeholder="Enter your first name" value="{{ profile.user.first_name }}" maxlength="100" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <div class="mb-3">
                                                     <label for="last_name">Last Name</label>
-                                                    <input class="form-control" name="last_name" id="last_name" type="text" placeholder="Also your last name" value="{{ profile.user.last_name }}" required>
+                                                    <input class="form-control" name="last_name" id="last_name" type="text" placeholder="Also your last name" value="{{ profile.user.last_name }}" maxlength="100" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +113,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <div class="mb-3">
                                                     <label for="phone">Phone</label>
-                                                    <input name="phone" class="form-control" id="phone" type="number" placeholder="+12-345 678 910" value="{{ profile.phone }}" required>
+                                                    <input name="phone" class="form-control" id="phone" type="number" placeholder="+12-345 678 910" value="{{ profile.phone }}" maxlength="32" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <div>
                                                     <label for="university_name">University</label>
-                                                    <input name="university_name" class="form-control" id="university_name" type="text"
+                                                    <input name="university_name" maxlength="255" class="form-control" id="university_name" type="text"
                                                         placeholder="Enter your university name" value="{{ profile.university_name }}"
                                                         required>
                                                 </div>
@@ -129,7 +129,7 @@
                                             <div class="col-md-6 mb-3">
                                                 <div>
                                                     <label for="university_major_name">Major</label>
-                                                    <input name="university_major_name" class="form-control" id="university_major_name" type="text" placeholder="Enter your major" value="{{ profile.university_major_name }}" required>
+                                                    <input name="university_major_name" maxlength="255" class="form-control" id="university_major_name" type="text" placeholder="Enter your major" value="{{ profile.university_major_name }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,14 +137,14 @@
                                             <div class="col-sm-9 mb-3">
                                                 <div class="form-group">
                                                     <label for="address">Address</label>
-                                                    <input name="address" class="form-control" id="address" type="text"
+                                                    <input name="address" class="form-control" maxlength="255" id="address" type="text"
                                                         placeholder="Enter your home address" value="{{ profile.address|default:'' }}" required>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mb-4">
                                             <label for="bio">Bio</label>
-                                            <textarea rows="10" name="bio" class="form-control text-gray" id="bio" required>{{ profile.bio|default:'' }}</textarea>
+                                            <textarea rows="10" name="bio" class="form-control text-gray" id="bio" maxlength="5000" required>{{ profile.bio|default:'' }}</textarea>
                                         </div>
                                         {% if profile.user.id == request.user.id %}
                                             <div class="mt-2">
@@ -168,16 +168,17 @@
                                                         Your avatar
                                                     </div>
                                                     <small class="text-gray ms-lg-3">
-                                                        JPG, GIF or PNG. Max size of 800K
+                                                        JPG or PNG. Max size of 800K
                                                     </small>
                                                 </div>
                                                 <div class="col-lg-5">
                                                     <div class="mb-3">
-                                                        <label for="formFile" class="form-label">
+                                                        <label for="avatar" class="form-label">
                                                             Default file input example
                                                         </label>
-                                                        <input name="avatar" type="file" class="form-control" type="file" id="avatar">
+                                                        <input name="avatar" type="file" class="form-control" id="avatar" onchange="checkFile(this)">
                                                     </div>
+                                                    <div id="fileInfo"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -190,4 +191,26 @@
             </div>
         </div>
     </main>
+
+    <script>
+        function checkFile(input) {
+            const file = input.files[0];
+            if (file) {
+                const fileType = file.type;    
+                if (fileType === 'image/jpeg' || fileType === 'image/png') {
+                    const fileSize = file.size / 1024; // Size in kilobytes
+                    const fileInfo = `File name: ${file.name}<br>File size: ${fileSize.toFixed(2)} KB<br>File type: ${fileType}`;
+                    document.getElementById("fileInfo").innerHTML = fileInfo;
+                    if (fileSize > 800) {
+                        alert("File size exceeds the limit of 800 KB.");
+                        input.value = "";
+                    }
+                } else {
+                    alert("Only JPG and PNG file types are allowed.");
+                    input.value = "";
+                }
+            }
+        }
+    </script>
+    
 {% endblock content %}
