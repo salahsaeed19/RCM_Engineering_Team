@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.contrib import messages
 from collections import Counter
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 def post_list(request):
@@ -34,6 +35,7 @@ def post_list(request):
     return render(request, 'blog/post_list.html', context)
 
 
+@login_required
 def post_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     comments = Comment.objects.filter(post_id=post_id)
@@ -51,6 +53,7 @@ def post_detail(request, post_id):
     return render(request, 'blog/post_detail.html', context)
 
 
+@login_required
 def add_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
@@ -83,6 +86,7 @@ def filter_posts_by_category(request, category_id):
     return render(request, 'blog/post_list.html', {'postss': posts})
 
 
+@login_required
 def add_comment(request, post_id):
     # Handle the form submission for adding a comment
     if request.method == 'POST':

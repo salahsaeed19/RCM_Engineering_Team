@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Eng. Salah El-Din Abu Saif{% endblock %}
+
+{% block content %}
+
+    {% include 'includes/header_black.html' %}
+
+    <main>
+        <div class="section-header section-image bg-white pb-0">
+            <div class="container z-2">
+                <div class="row my-5 justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <img src="{% static "img/salah.jpg" %}" width="192"
+                            class="rounded-circle img-thumbnail image-lg border-secondary p-2" alt="salah">
+                        <h1 class="my-4">Salah El-Din Saeed Abu Saif</h1>
+                        <h2 class="h5 fw-normal text-gray mb-4">
+                            <span class="fas fa-map-marker-alt me-2"></span>Gaza, Palestina
+                        </h2>
+                        <ul class="list-unstyled d-flex justify-content-center mt-3 mb-0">
+                            <li>
+                                <a href="https://www.linkedin.com/in/salah-abo-saif/" target="_blank" aria-label="LinkedIn social link"
+                                    class="icon icon-sm text-linkedin me-3">
+                                    <span class="fab fa-linkedin" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/salahsaeed19/salahsaeed19/" target="_blank" aria-label="GitHub social link"
+                                    class="icon icon-sm text-github me-3">
+                                    <span class="fab fa-github" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://youtube.com/@salahsaeed9769" target="_blank" aria-label="YouTube social link"
+                                    class="icon icon-sm text-youtube me-3">
+                                    <span class="fab fa-youtube" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-md pt-0">
+            <div class="container">
+                <div class="row justify-content-center mt-6">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="timeline timeline-one">
+                            <div class="timeline-item">
+                                <span class="text-gray">
+                                    Year 2023
+                                </span>
+                                <h3 class="h4 my-2">
+                                    Present
+                                </h3>
+                                <p>
+                                    Seven months ago, I started working as an ERP programmer specializing in ODOO, and I 
+                                    have obtained the ODOO certification v16.
+                                </p>
+                                <img class="mt-2" src="{% static "img/odoo.jpg" %}" alt="signature" width="100">
+                            </div>
+                            <div class="timeline-item">
+                                <span class="text-gray">
+                                    2022-2023
+                                </span>
+                                <h3 class="h4 my-2">
+                                    What i learned in my first year
+                                </h3>
+                                <div class="my-4">
+                                    <span class="icon icon-sm text-danger"><span class="fab fa-html5"></span></span>
+                                    <span class="icon icon-sm text-danger"><span class="fab fa-css3"></span></span>
+                                    <span class="icon icon-sm text-success me-2"><span class="fab fa-js"></span></span>
+                                    <span class="icon icon-sm text-purple me-2"><span class="fab fa-bootstrap"></span></span>
+                                    <span class="icon icon-sm text-info me-2"><span class="fab fa-python"></span></span>
+                                </div>
+                                <p>
+                                    I am passionate about Full Stack development, specializing in HTML, CSS, JavaScript, 
+                                    Bootstrap for frontend, and Python Django for backend. I've gained proficiency in 
+                                    the Django framework and continue to seek further knowledge.
+                                </p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="text-gray">
+                                    2019-2024
+                                </span>
+                                <h3 class="h4 my-2">
+                                    University of Palestine
+                                </h3>
+                                <img src="{% static "img/University_of_Palestine.png" %}" class="image-xs my-4"
+                                    alt="Palestine logo">
+                                <p class="fw-bolder">
+                                    BS in Software Engineering
+                                </p>
+                                <p>
+                                    As a fifth-level Software Engineering Student with a Data Science concentration, 
+                                    I'm eager to apply Python programming and Django expertise.
+                                </p>
+                            </div>
+                            {% comment %} <div class="timeline-item">
+                                <span class="text-gray">
+                                    2010-2015
+                                </span>
+                                <h3 class="h4 my-2">
+                                    High school
+                                </h3>
+                                <img src="../../assets/img/clients/business-school.svg" class="image-xs my-4"
+                                    alt="School logo">
+                                <p>
+                                    High school is a term primarily used in the United States and Canada to describe the
+                                    level of education students receive from approximately 13 to 18 years old, although
+                                    there is some variation.
+                                </p>
+                            </div> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section section-lg bg-gray-200">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-globe-europe"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Language:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            Arabic, English
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-fill-drip"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">Skills:</span>
+                                        <div class="text-gray mt-2">
+                                            Full Stack Development
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-code-branch"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Technologies:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            Odoo ERP, Django, Bootstrap
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-group list-group-transparent list-group-flush list-group-borderless mb-0">
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-birthday-cake"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Birthday:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            Jan 16, 2002
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-briefcase"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Organizations:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            Technical Solutions To Globe
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-globe"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Online:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            RCM Engineering Team
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <ul class="list-group list-group-transparent list-group-flush border-0 mb-0">
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="far fa-paper-plane"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Email:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            <a href="mailto:salahsaef40@gmail.com">
+                                                salahsaef40@gmail.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-mobile-alt"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Phone number:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            +(970) 595 911 694
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item rounded-0 py-4">
+                                <div class="d-flex">
+                                    <span class="icon icon-sm me-3 d-none d-xl-inline lh-200">
+                                        <span class="fas fa-map-pin"></span>
+                                    </span>
+                                    <div class="media-body d-block">
+                                        <span class="h5">
+                                            Location:
+                                        </span>
+                                        <div class="text-gray mt-2">
+                                            Palestina, Gaza
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

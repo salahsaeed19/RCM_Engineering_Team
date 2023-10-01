@@ -3,6 +3,8 @@ from .models import EngineeringSummary
 from .forms import EngineeringSummaryForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.paginator import Paginator
+from collections import Counter
 
 
 @login_required
