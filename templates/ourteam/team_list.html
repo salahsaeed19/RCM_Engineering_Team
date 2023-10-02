@@ -27,29 +27,24 @@
                                     <img src="{{ member.image.url }}" class="card-img-top rounded-circle border-0" alt="{{ member.first_name }}">
                                 </div>
                                 <div class="card-body">
-                                    <h2 class="h4 card-title mb-2">{{ member.first_name }}  {{ member.last_name }}</h2>
+                                    <h2 class="h4 card-title mb-2">{{ member.name }}</h2>
                                     <span class="card-subtitle text-gray fw-normal">
                                         {{ member.job_title }}
                                     </span>
                                     <ul class="list-unstyled d-flex justify-content-center mt-3 mb-0">
                                         <li>
-                                            <a href="#" target="_blank" aria-label="facebook social link" class="text-facebook me-3">
+                                            <a href="{{ member.facebook }}" target="_blank" aria-label="facebook social link" class="text-facebook me-3">
                                                 <span class="fab fa-facebook-f"></span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank" aria-label="twitter social link" class="text-twitter me-3">
-                                                <span class="fab fa-twitter"></span>
+                                            <a href="{{ member.github }}" target="_blank" aria-label="github social link" class="text-github me-3">
+                                                <span class="fab fa-github"></span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#" target="_blank" aria-label="slack social link" class="text-slack me-3">
-                                                <span class="fab fa-slack-hash"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" target="_blank" aria-label="dribbble social link" class="text-dribbble">
-                                                <span class="fab fa-dribbble"></span>
+                                            <a href="{{ member.linkedin }}" target="_blank" aria-label="linkedin social link" class="text-linkedin me-3">
+                                                <span class="fab fa-linkedin"></span>
                                             </a>
                                         </li>
                                     </ul>

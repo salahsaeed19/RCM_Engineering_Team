@@ -32,7 +32,7 @@
                 </div>
             </div>
         </section>
-        <section class="section pt-4 pb-7 bg-white">
+        <section class="section pt-4 pb-1 bg-white">
             <div class="container">
                 <nav class="mt-n6">
                     <div class="nav nav-tabs flex-column flex-lg-row justify-content-center shadow-sm border-soft bg-white rounded mb-6 p-2 p-lg-4">
@@ -55,30 +55,50 @@
                                                 <div class="card shadow">
                                                     <img src="{{ summary.image.url }}" class="card-img-top rounded-top" alt="{{ summary.title }}">
                                                     <div class="card-body">
-                                                        <div class="media d-flex align-items-center justify-content-between">
-                                                            <div class="post-group">
-                                                                <a href="{% url "profile" summary.author.id %}" data-toggle="tooltip" data-placement="top" title=""
-                                                                    data-original-title="{{ summary.author.get_full_name }}">
-                                                                    <img class="avatar-sm me-2 img-fluid rounded-circle"
-                                                                        src="{{ summary.author.profile.avatar.url }}"
-                                                                        alt="{{ summary.author.get_full_name }}">
-                                                                    {{ summary.author.username }}
-                                                                </a>
-                                                            </div>
-                                                            <div class="d-flex align-items-center">
-                                                                <span class="small">
-                                                                    <span class="far fa-calendar-alt me-2"></span>
-                                                                    {{ summary.created_at|date:"d F Y" }}
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <h3 class="h5 card-title mt-4">{{ summary.title }}</h3>
-                                                        <p class="card-text">{{ summary.content|truncatewords:30 }}</p>
-                                                        <a href="{{ summary.source_link }}" class="btn btn-primary btn-sm" target="_blank">Learn More</a>
+                                                        <span class="h6 icon-tertiary small">
+                                                            <span class="far fa-calendar-alt me-2"></span>
+                                                            {{ summary.created_at|date:"d F Y" }}
+                                                        </span>
+                                                        <h3 class="h5 card-title mt-3">
+                                                            {{ summary.title }}
+                                                        </h3>
+                                                        <p class="card-text">
+                                                            {{ summary.content|truncatewords:30 }}
+                                                        </p>
+                                                        <a href="{{ summary.source_link }}" class="btn btn-primary btn-sm" target="_blank">
+                                                            Learn More
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         {% endfor %}
+                                        <nav class="blog-pagination justify-content-center d-flex">
+                                            {% if summaries.has_other_pages %}
+                                                <div class="pagination_wrap">
+                                                    <ul class="pagination">
+                                                        {% if summaries.has_previous %}
+                                                            <li class="page-item">
+                                                            <a href="?page={{ summaries.previous_page_number }}" class="page-link" aria-label="Previous">
+                                                                <i class="fa-solid fa-chevron-left"></i>
+                                                            </a>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% for i in summaries.paginator.page_range %}
+                                                            <li class="page-item {% if summaries.number == i %}active{% endif %}">
+                                                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                            </li>
+                                                        {% endfor %}
+                                                        {% if summaries.has_next %}
+                                                            <li class="page-item">
+                                                            <a href="?page={{ summaries.next_page_number }}" class="page-link" aria-label="Next">
+                                                                <i class="fa-solid fa-chevron-right"></i>
+                                                            </a>
+                                                            </li>
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        </nav>
                                     </div>
                                 {% else %}
                                     <div class="row justify-content-center">
@@ -103,7 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                {% endif %} 
+                                {% endif %}
                             </div>
                         </div>
                     </div>

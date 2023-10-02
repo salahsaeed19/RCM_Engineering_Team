@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 class EngineeringSummary(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateField()
     category = models.CharField(max_length=100, choices=(
         ('Mechanical', 'Mechanical Engineering'),
@@ -17,7 +16,7 @@ class EngineeringSummary(models.Model):
     image = models.ImageField(upload_to='engineering_summaries/', blank=True, null=True)
     likes = models.PositiveIntegerField(default=0)
     dislikes = models.PositiveIntegerField(default=0)
-    views = models.PositiveIntegerField(default=0)  # New field for tracking views
+    views = models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return self.title

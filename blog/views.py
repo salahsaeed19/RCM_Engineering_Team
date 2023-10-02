@@ -20,9 +20,11 @@ def post_list(request):
         ).distinct()
 
     recent_posts = Post.objects.order_by('-created_at')[:4]
+    
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
     categories = [post.category for post in posts]
     category_counts = dict(Counter(categories))
     context = {
@@ -54,47 +56,43 @@ def post_detail(request, post_id):
 
 
 @login_required
-def add_post(request):
-    if request.method == 'POST':
-        form = PostForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_post = form.save(commit=False)
-            new_post.author = request.user
-            new_post.save()
-            return redirect('post_detail', post_id=new_post.pk)
-    else:
-        form = PostForm()
-    context = {'form': form}
-    return render(request, 'blog/add_post.html', context)
-
-
 def search_posts(request):
     # Handle search functionality
     query = request.GET.get('q')
     if query:
         # Use Q objects to perform a case-insensitive search on post titles
-        posts = Post.objects.filter(Q(title__icontains=query))
+        post = Post.objects.filter(Q(title__icontains=query))
     else:
-        posts = Post.objects.all()
+        post = Post.objects.all()
+
+    paginator = Paginator(post, 3)
+    page_number = request.GET.get('page')
+    posts = paginator.get_page(page_number)
+
     return render(request, 'blog/post_list.html', {'postss': posts})
 
 
+@login_required
 def filter_posts_by_category(request, category_id):
     # Filter posts by category
     category = get_object_or_404(Category, pk=category_id)
-    posts = Post.objects.filter(category=category)
+    post = Post.objects.filter(category=category)
+    
+    paginator = Paginator(post, 3)
+    page_number = request.GET.get('page')
+    posts = paginator.get_page(page_number)
+
     return render(request, 'blog/post_list.html', {'postss': posts})
 
 
 @login_required
 def add_comment(request, post_id):
-    # Handle the form submission for adding a comment
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
-            # Create a new comment
+
             comment = form.save(commit=False)
-            comment.user_id = request.user  # Assuming you have user authentication
+            comment.user_id = request.user
             comment.post_id_id = post_id
             comment.save()
             messages.success(request, 'Comment added successfully.')
@@ -102,6 +100,20 @@ def add_comment(request, post_id):
         else:
             messages.error(request, 'Error adding comment. Please check the form.')
 
-    # If it's not a POST request or the form is invalid, render the post detail page
-    # with the comment form
+
     return redirect('post_detail', post_id=post_id)
+
+
+# @login_required
+# def add_post(request):
+#     if request.method == 'POST':
+#         form = PostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             new_post = form.save(commit=False)
+#             new_post.author = request.user
+#             new_post.save()
+#             return redirect('post_detail', post_id=new_post.pk)
+#     else:
+#         form = PostForm()
+#     context = {'form': form}
+#     return render(request, 'blog/add_post.html', context)

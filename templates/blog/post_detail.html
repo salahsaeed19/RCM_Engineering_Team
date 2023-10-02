@@ -14,7 +14,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-10 text-center">
                         <div class="mb-4">
-                            <a href="" class="badge bg-warning text-uppercase px-3">
+                            <a class="badge bg-warning text-uppercase px-3">
                                 {{ post.category.name }}
                             </a>
                         </div>
@@ -22,9 +22,11 @@
                             {{ post.title }}
                         </h1>
                         <div class="post-meta">
-                            <span class="fw-bold me-3">
-                                {{ post.author.username }}
-                            </span>
+                            <a href="{% url "profile" post.author.id %}">
+                                <span class="fw-bold me-3">
+                                    {{ post.author.username }}
+                                </span>
+                            </a>
                             <span class="post-date me-3">
                                 {{ post.publish_date|date:"F d, Y" }}
                             </span>
@@ -64,7 +66,7 @@
                                 <textarea class="form-control border border-gray-300-gray" name="body" placeholder="Add your comment" rows="6" maxlength="1000"></textarea>
                                 <div class="d-flex justify-content-between mt-3">
                                     <small class="fw-light text-dark">
-                                        <span id="charactersRemaining">1000 </span> characters remaining
+                                        <span id="charactersRemaining">5000 </span> characters remaining
                                     </small>
                                     <button type="submit" class="btn btn-primary animate-up-2">
                                         Send
@@ -103,13 +105,6 @@
                             {% else %}
                                 <p>No comments yet.</p>
                             {% endif %}
-                            <div class="mt-5 text-center">
-                                <button class="btn btn-primary btn-loading-overlay me-2 mb-2">
-                                    <span class="ms-1 btn-inner-text">
-                                        Load more comments
-                                    </span>
-                                </button>
-                            </div>
                         </div>
                     </div>
                 </div>
