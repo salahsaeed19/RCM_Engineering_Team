@@ -32,21 +32,27 @@
                                         {{ member.job_title }}
                                     </span>
                                     <ul class="list-unstyled d-flex justify-content-center mt-3 mb-0">
-                                        <li>
-                                            <a href="{{ member.facebook }}" target="_blank" aria-label="facebook social link" class="text-facebook me-3">
-                                                <span class="fab fa-facebook-f"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ member.github }}" target="_blank" aria-label="github social link" class="text-github me-3">
-                                                <span class="fab fa-github"></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ member.linkedin }}" target="_blank" aria-label="linkedin social link" class="text-linkedin me-3">
-                                                <span class="fab fa-linkedin"></span>
-                                            </a>
-                                        </li>
+                                        {% if member.facebook %}
+                                            <li>
+                                                <a href="{{ member.facebook }}" target="_blank" aria-label="facebook social link" class="text-facebook me-3">
+                                                    <span class="fab fa-facebook-f"></span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if member.github %}
+                                            <li>
+                                                <a href="{{ member.github }}" target="_blank" aria-label="github social link" class="text-github me-3">
+                                                    <span class="fab fa-github"></span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if member.linkedin %}
+                                            <li>
+                                                <a href="{{ member.linkedin }}" target="_blank" aria-label="linkedin social link" class="text-linkedin me-3">
+                                                    <span class="fab fa-linkedin"></span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                     </ul>
                                     <p class="card-text my-2">{{ member.bio }}</p>
                                 </div>
@@ -64,7 +70,7 @@
                         <p class="lead py-4 text-gray">
                             If you share our passion for engineering education and want to contribute to our mission, we welcome you to explore opportunities to join the RCM Engineering Team.
                         </p>
-                        <a href="" class="btn btn-lg btn-secondary animate-up-2">See openings</a>
+                        <a href="{% url 'contact_us' %}" class="btn btn-lg btn-secondary animate-up-2">See openings</a>
                     </div>
                 </div>
             </div>

@@ -3,15 +3,15 @@
         <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark headroom--not-bottom headroom--pinned headroom--top">
             <div class="container position-relative">
                 <a class="navbar-brand me-lg-5" href="{% url "home" %}">
-                    <img class="navbar-brand-dark" src="{% static "img/rcm2.jpg" %}" alt="Logo light">
-                    <img class="navbar-brand-light" src="{% static "img/rcm2.jpg" %}" alt="Logo dark">
+                    <img class="navbar-brand-dark" src="{% static "img/rcm_remove_bg.jpg" %}" alt="Logo light">
+                    <img class="navbar-brand-light" src="{% static "img/rcm_remove_bg.jpg" %}" alt="Logo dark">
                 </a>
                 <div class="navbar-collapse collapse me-auto" id="navbar_global">
                     <div class="navbar-collapse-header">
                         <div class="row">
                             <div class="col-6 collapse-brand">
                                 <a href="{% url "home" %}">
-                                    <img src="{% static "img/rcm2.jpg" %}" alt="Themesberg logo">
+                                    <img src="{% static "img/rcm_remove_bg.jpg" %}" alt="Themesberg logo">
                                 </a>
                             </div>
                             <div class="col-6 collapse-close">
@@ -93,12 +93,10 @@
                         </button>
                     {% else %}
                         <a href="{% url 'login' %}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3">
-                            <span class="fas fa-sign-in-alt mr-2"></span>
-                            Log in
+                            <span class="fas fa-sign-in-alt mr-2"></span>Log In
                         </a>
                         <a href="{% url 'signup' %}" class="btn btn-tertiary">
-                            <span class="fas fa-user-plus mr-2"></span> 
-                            Sign Up
+                            <span class="fas fa-user-plus mr-2"></span>Sign Up
                         </a>
                         <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
