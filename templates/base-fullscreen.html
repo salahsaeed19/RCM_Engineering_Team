@@ -1,9 +1,8 @@
 {% load static %}
-<!DOCTYPE html>
 <html lang="en">
 
     <head>
-            
+        
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,20 +11,21 @@
         <meta name="author" content="RCM Engineering Team">
         
         <!-- Favicon -->
-        <link rel="icon" href="{% static 'img/rcm_remove_bg.jpg' %}" type="image/x-icon">
+        <link rel="icon" href="{% static 'img/rcm_remove_bg.png' %}" type="image/x-icon">
 
         <!-- CSS Stylesheets -->
         <link type="text/css" href="{% static 'css/all.min.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/volt.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/pixel.css' %}" rel="stylesheet">
-        <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet">
+
+        {% comment %} <link type="text/css" href="{% static 'css/volt.css.map' %}" rel="stylesheet"> {% endcomment %}
+        {% comment %} <link type="text/css" href="{% static 'css/notyf.min.css' %}" rel="stylesheet"> {% endcomment %}
+        {% comment %} <link type="text/css" href="{% static 'css/glide.core.min.css' %}" rel="stylesheet"> {% endcomment %}
+        {% comment %} <link type="text/css" href="{% static 'css/glide.theme.min.css' %}" rel="stylesheet"> {% endcomment %}
 
         <!-- Additional Stylesheets (if needed) -->
         {% block stylesheets %}{% endblock stylesheets %}
-
+        
     </head>
 
     <body class="{% block body_class %}{% endblock body_class %}">

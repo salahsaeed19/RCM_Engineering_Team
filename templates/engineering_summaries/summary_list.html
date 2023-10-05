@@ -72,27 +72,28 @@
                                                 </div>
                                             </div>
                                         {% endfor %}
+
                                         <nav class="blog-pagination justify-content-center d-flex">
                                             {% if summaries.has_other_pages %}
                                                 <div class="pagination_wrap">
                                                     <ul class="pagination">
                                                         {% if summaries.has_previous %}
                                                             <li class="page-item">
-                                                            <a href="?page={{ summaries.previous_page_number }}" class="page-link" aria-label="Previous">
-                                                                <i class="fa-solid fa-chevron-left"></i>
-                                                            </a>
+                                                                <a href="?page={{ summaries.previous_page_number }}" class="page-link" aria-label="Previous">
+                                                                    Previous
+                                                                </a>
                                                             </li>
                                                         {% endif %}
                                                         {% for i in summaries.paginator.page_range %}
                                                             <li class="page-item {% if summaries.number == i %}active{% endif %}">
-                                                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                                <a href="?page={{ i }}" class="page-link">{{ i }}</a>
                                                             </li>
                                                         {% endfor %}
                                                         {% if summaries.has_next %}
                                                             <li class="page-item">
-                                                            <a href="?page={{ summaries.next_page_number }}" class="page-link" aria-label="Next">
-                                                                <i class="fa-solid fa-chevron-right"></i>
-                                                            </a>
+                                                                <a href="?page={{ summaries.next_page_number }}" class="page-link" aria-label="Next">
+                                                                    Next
+                                                                </a>
                                                             </li>
                                                         {% endif %}
                                                     </ul>

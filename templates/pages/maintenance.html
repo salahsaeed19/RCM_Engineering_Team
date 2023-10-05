@@ -10,8 +10,9 @@
             <div class="container py-5">
                 <div class="row align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-12 col-sm-9 col-md-8 col-lg-5 mb-5 mb-lg-0">
-                        <img class="img-fluid" src="{% static 'img/maintenance.svg' %}" alt="boy illustration">
-                        </div>
+                        {% comment %} <img class="img-fluid" src="{% static 'img/maintenance.svg' %}" alt="boy illustration"> {% endcomment %}
+                        <img class="img-fluid" src="https://demo.themesberg.com/pixel-pro/v5/assets/img/illustrations/maintenance.svg" alt="boy illustration">
+                    </div>
                     <div class="col-sm-12 col-lg-6">
                         <div class="text-center text-lg-left">
                             <h4 class="mt-4 text-gray">
@@ -23,10 +24,6 @@
                             <p class="lead my-4">
                                 Sorry for the inconvenience but we’re performing some maintenance at the moment.
                             </p>
-                            <a class="btn btn-tertiary animate-hover" href="{% url "home" %}">
-                                <span class="fas fa-chevron-left me-3 ps-2 animate-left-3"></span>
-                                Go back home
-                            </a>
                         </div>
                     </div>
                 </div>

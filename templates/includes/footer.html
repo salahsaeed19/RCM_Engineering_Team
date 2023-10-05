@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img class="navbar-brand-dark mb-4" height="35" src="{% static "img/rcm_remove_bg.jpg" %}" alt="RCM Engineering Team Logo">
+                    <img class="navbar-brand-dark mb-4" height="35" src="{% static "img/rcm_remove_bg.png" %}" alt="RCM Engineering Team Logo">
                     <p>The RCM Engineering Team is dedicated to supporting and improving the experience of engineering students through study summaries, educational workshops, and community engagement.</p>
                     <ul class="social-buttons mb-5 mb-lg-0">
                         <li>
@@ -85,21 +85,3 @@
             <i class="fas fa-chevron-up"></i>
         </button>
     </div>
-    <script>
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        function toggleBackToTopButton() {
-            var backToTopButton = document.getElementById("back-to-top");
-            if (window.scrollY > 100) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
-            }
-        }
-        window.addEventListener("scroll", toggleBackToTopButton);
-        window.addEventListener("load", toggleBackToTopButton);
-    </script>

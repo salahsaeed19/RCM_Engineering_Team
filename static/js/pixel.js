@@ -1,20 +1,3 @@
-/*
-
-=========================================================
-* Pixel Pro Bootstrap 5 UI Kit
-=========================================================
-
-* Product Page: https://themesberg.com/product/ui-kit/pixel-pro-premium-bootstrap-5-ui-kit
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-
-* Coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Contact us if you want to remove it.
-
-*/
-
 "use strict";
 const d = document;
 d.addEventListener("DOMContentLoaded", function (event) {
@@ -50,7 +33,7 @@ d.addEventListener("DOMContentLoaded", function (event) {
     }
 
     if (d.querySelector('.headroom')) {
-        var headroom = new Headroom(document.querySelector("#navbar-main"), {
+        var headroom = new Headroom(document.querySelector(".navbar-main"), {
             offset: 0,
             tolerance: {
                 up: 0,

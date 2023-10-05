@@ -1,23 +1,50 @@
 {% load static %}
 
-<script src="{% static 'js/pixel.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/buttons.js' %}"></script>
-<script src="{% static 'js/chartist-plugin-tooltip.min.js' %}"></script>
-<script src="{% static 'js/chartist.min.js' %}"></script>
-<script src="{% static 'js/countUp.umd.js' %}"></script>
-<script src="{% static 'js/datepicker.min.js' %}"></script>
-<script src="{% static 'js/glide.min.js' %}"></script>
-<script src="{% static 'js/headroom.min.js' %}"></script>
-<script src="{% static 'js/jarallax.min.js' %}"></script>
-<script src="{% static 'js/notify.js' %}"></script>
-<script src="{% static 'js/notyf.min.js' %}"></script>
-<script src="{% static 'js/nouislider.min.js' %}"></script>
-<script src="{% static 'js/on-screen.umd.min.js' %}"></script>
-<script src="{% static 'js/pageScript.js' %}"></script>
-<script src="{% static 'js/popper.min.js' %}"></script>
-<script src="{% static 'js/simplebar.min.js' %}"></script>
-<script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script>
-<script src="{% static 'js/vivus.min.js' %}"></script>
-<script src="{% static 'js/volt.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/buttons.js' %}"></script>
+    <script src="{% static 'js/headroom.min.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/pixel.js' %}"></script>
+    {% comment %} <script src="{% static 'js/chartist-plugin-tooltip.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/chartist.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/countUp.umd.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/datepicker.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/glide.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/jarallax.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/notify.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/notyf.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/nouislider.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/on-screen.umd.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/pageScript.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/popper.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/simplebar.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/smooth-scroll.polyfills.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/vivus.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'js/volt.min.js' %}"></script> {% endcomment %}
+    <script>
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        function toggleBackToTopButton() {
+            var backToTopButton = document.getElementById("back-to-top");
+            if (window.scrollY > 100) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+        window.addEventListener("scroll", toggleBackToTopButton);
+        window.addEventListener("load", toggleBackToTopButton);
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var navbarToggle = document.querySelector(".navbar-toggler");
+            var navbarCollapse = document.querySelector(".navbar-collapse");
+            navbarToggle.addEventListener("click", function () {
+                navbarCollapse.classList.toggle("show");
+            });
+        });
+    </script>
