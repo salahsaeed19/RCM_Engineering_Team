@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def summary_list(request):
     summary = EngineeringSummary.objects.all()
 
-    paginator = Paginator(summary, 1)
+    paginator = Paginator(summary, 12)
     page_number = request.GET.get('page')
     summaries = paginator.get_page(page_number)
 
@@ -24,7 +24,7 @@ def search_summaries(request):
     else:
         summary = EngineeringSummary.objects.all()
 
-    paginator = Paginator(summary, 1)
+    paginator = Paginator(summary, 12)
     page_number = request.GET.get('page')
     summaries = paginator.get_page(page_number)
     
@@ -33,13 +33,15 @@ def search_summaries(request):
 
 @login_required
 def filter_summaries_by_category(request, category):
-    summary = EngineeringSummary.objects.filter(category=category)
 
-    paginator = Paginator(summary, 1)
+    summaries = EngineeringSummary.objects.filter(categories__name=category)
+    
+    paginator = Paginator(summaries, 12)
     page_number = request.GET.get('page')
     summaries = paginator.get_page(page_number)
-
+    
     return render(request, 'engineering_summaries/summary_list.html', {'summaries': summaries})
+
 
 
 # @login_required

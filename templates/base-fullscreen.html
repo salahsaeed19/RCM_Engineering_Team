@@ -30,8 +30,11 @@
 
     <body class="{% block body_class %}{% endblock body_class %}">
 
-        {% block content %}{% endblock content %}
+        {% block content %}
+        
+        {% endblock content %}
 
+        <!-- Scripts Section -->
         {% include 'includes/scripts.html' %}    
 
     </body>

@@ -19,7 +19,7 @@
                     <div class="col-12 col-lg-8">
                         <form method="GET" action="{% url 'search_summaries' %}" class="mb-3">
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-lg rounded-start" name="q"  maxlength="125" placeholder="Search summaries...">
+                                <input type="text" class="form-control form-control-lg rounded-start" name="q" maxlength="125" placeholder="Search summaries...">
                                 <button class="btn btn-tertiary" type="submit">
                                     <span class="icon icon-xs me-1">
                                         <span class="fas fa-search"></span>
@@ -37,11 +37,15 @@
                 <nav class="mt-n6">
                     <div class="nav nav-tabs flex-column flex-lg-row justify-content-center shadow-sm border-soft bg-white rounded mb-6 p-2 p-lg-4">
                         <a href="{% url 'summary_list' %}" class="nav-item nav-link mr-lg-3">All Summaries</a>
-                        <a href="{% url 'filter_summaries_by_category' 'Mechanical' %}" class="nav-item nav-link mr-lg-3">Mechanical</a>
-                        <a href="{% url 'filter_summaries_by_category' 'Electrical' %}" class="nav-item nav-link mr-lg-3">Electrical</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Computer Systems' %}" class="nav-item nav-link mr-lg-3">Computer Systems</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Software' %}" class="nav-item nav-link mr-lg-3">Software</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Computer and Communications' %}" class="nav-item nav-link mr-lg-3">Computer and Communications</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Medical Equipment' %}" class="nav-item nav-link mr-lg-3">Medical Equipment</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Mechatronics' %}" class="nav-item nav-link mr-lg-3">Mechatronics</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Renewable Energy' %}" class="nav-item nav-link mr-lg-3">Renewable Energy</a>
                         <a href="{% url 'filter_summaries_by_category' 'Civil' %}" class="nav-item nav-link mr-lg-3">Civil</a>
-                        <a href="{% url 'filter_summaries_by_category' 'Computer' %}" class="nav-item nav-link mr-lg-3">Computer</a>
-                        <a href="{% url 'filter_summaries_by_category' 'Other' %}" class="nav-item nav-link mr-lg-3">Other</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Architecture' %}" class="nav-item nav-link mr-lg-3">Architecture</a>
+                        <a href="{% url 'filter_summaries_by_category' 'Computer Science' %}" class="nav-item nav-link mr-lg-3">Computer Science</a>
                     </div>
                 </nav>
                 <div class="row">
@@ -53,7 +57,9 @@
                                         {% for summary in summaries %}
                                             <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-4">
                                                 <div class="card shadow">
-                                                    <img src="{{ summary.image.url }}" class="card-img-top rounded-top" alt="{{ summary.title }}">
+                                                    {% if summary.image %}
+                                                        <img src="{{ summary.image.url }}" class="card-img-top rounded-top" alt="{{ summary.title }}">
+                                                    {% endif %}
                                                     <div class="card-body">
                                                         <span class="h6 icon-tertiary small">
                                                             <span class="far fa-calendar-alt me-2"></span>

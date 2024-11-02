@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm, ProfileForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import messages
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -56,7 +56,10 @@ def profile_view(request, user_id):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
+            messages.success(request, "Your profile has been updated successfully!")
             return redirect('profile', user_id=user_id)
+        else:
+            messages.error(request, "There was an error updating your profile. Please try again.")
     else:
         form = ProfileForm(instance=profile)
 
