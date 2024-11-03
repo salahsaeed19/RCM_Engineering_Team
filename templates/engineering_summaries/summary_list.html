@@ -65,20 +65,23 @@
                                                             <span class="far fa-calendar-alt me-2"></span>
                                                             {{ summary.created_at|date:"d F Y" }}
                                                         </span>
+                                                        <span class="h6 icon-tertiary small ms-3 float-end">
+                                                            <span class="fas fa-eye me-2"></span>
+                                                            {{ summary.views }}
+                                                        </span>
                                                         <h3 class="h5 card-title mt-3">
                                                             {{ summary.title }}
                                                         </h3>
                                                         <p class="card-text">
                                                             {{ summary.content|truncatewords:30 }}
                                                         </p>
-                                                        <a href="{{ summary.source_link }}" class="btn btn-primary btn-sm" target="_blank">
+                                                        <a href="{% url 'increment_views_and_redirect' summary.id %}" class="btn btn-primary btn-sm" target="_blank">
                                                             Learn More
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         {% endfor %}
-
                                         <nav class="blog-pagination justify-content-center d-flex">
                                             {% if summaries.has_other_pages %}
                                                 <div class="pagination_wrap">

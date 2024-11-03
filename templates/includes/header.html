@@ -22,46 +22,9 @@
                     </div>
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
                         <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="supportDropdown" aria-expanded="false">
+                            <a href="{% url "summary_list" %}" class="nav-link ">
                                 Engineering Summaries
-                                <span class="fas fa-angle-down nav-link-arrow ms-1"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="supportDropdown">
-                                <div class="col-auto px-0">
-                                    <div class="list-group list-group-flush">
-                                        <a href="{% url 'summary_list' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                All&nbsp;Engineering&nbsp;Summaries
-                                            </span>
-                                        </a>
-                                        <a href="{% url 'filter_summaries_by_category' 'Mechanical' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                Mechanical&nbsp;Engineering
-                                            </span>
-                                        </a>
-                                        <a href="{% url 'filter_summaries_by_category' 'Electrical' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                Electrical&nbsp;Engineering
-                                            </span>
-                                        </a>
-                                        <a href="{% url 'filter_summaries_by_category' 'Civil' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                Civil&nbsp;Engineering
-                                            </span>
-                                        </a>
-                                        <a href="{% url 'filter_summaries_by_category' 'Computer' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                Computer&nbsp;Engineering
-                                            </span>
-                                        </a>
-                                        <a href="{% url 'filter_summaries_by_category' 'Other' %}" class="list-group-item list-group-item-action d-flex align-items-center p-0 py-3 px-lg-4">
-                                            <span class="d-block font-small fw-bold mb-0">
-                                                Other
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a href="{% url "team_list" %}" class="nav-link ">

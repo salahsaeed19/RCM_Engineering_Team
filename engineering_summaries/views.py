@@ -3,6 +3,7 @@ from .models import EngineeringSummary
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 
 
 @login_required
@@ -18,17 +19,19 @@ def summary_list(request):
 
 @login_required
 def search_summaries(request):
-    query = request.GET.get('q')
-    if query:
-        summary = EngineeringSummary.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
-    else:
-        summary = EngineeringSummary.objects.all()
-
-    paginator = Paginator(summary, 12)
+    query = request.GET.get('q', '')
+    summaries = EngineeringSummary.objects.filter(
+        Q(title__icontains=query) | Q(content__icontains=query)
+    ).distinct()
+    
+    paginator = Paginator(summaries, 12)
     page_number = request.GET.get('page')
     summaries = paginator.get_page(page_number)
     
-    return render(request, 'engineering_summaries/summary_list.html', {'summaries': summaries})
+    return render(request, 'engineering_summaries/summary_list.html', {
+        'summaries': summaries,
+        'query': query
+    })
 
 
 @login_required
@@ -42,6 +45,13 @@ def filter_summaries_by_category(request, category):
     
     return render(request, 'engineering_summaries/summary_list.html', {'summaries': summaries})
 
+
+@login_required
+def increment_views_and_redirect(request, summary_id):
+    summary = get_object_or_404(EngineeringSummary, id=summary_id)
+    summary.views += 1
+    summary.save()
+    return HttpResponseRedirect(summary.source_link)
 
 
 # @login_required
