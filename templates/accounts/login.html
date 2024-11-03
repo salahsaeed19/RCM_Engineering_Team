@@ -11,8 +11,6 @@
                 <div class="row justify-content-center form-bg-image" data-background="{% static 'img/signin.svg' %}">
                     <p class="text-center">
                         <a href="{% url "home" %}" class="text-gray-700">
-                            {% comment %} <i class="fas fa-angle-left mr-2"></i> 
-                            Back to Home Page {% endcomment %}
                             <span class="icon icon-xs">
                                 <span class="fas fa-chevron-left me-2"></span>
                             </span> Back to Home Page
@@ -23,6 +21,11 @@
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">Sign in to our platform</h1>
                             </div>
+                            {% if msg %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ msg }}
+                                </div>
+                            {% endif %}
                             <form method="post" class="mt-4" novalidate>
                                 {% csrf_token %}
                                 <input type="hidden" name="next" value="{{ next }}">

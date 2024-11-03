@@ -29,7 +29,7 @@
                                         </span>
                                     {% else %}
                                         <span class="h5 my-0 my-lg-3 me-3 me-lg-0">
-                                            Profile {{ profile.user.username }}
+                                            Profile, {{ profile.user.username }}
                                         </span>
                                     {% endif %}
                                     <a href="{% url 'logout' %}" class="btn btn-gray-300 btn-xs">
@@ -161,13 +161,17 @@
                                     {% else %}
                                         <div class="card card-body bg-white border-gray-300 mb-4 shadow-sm">
                                             <h2 class="h5 mb-4">User Information</h2>
-                                            <p><strong>First Name:</strong> {{ profile.user.first_name }}</p>
-                                            <p><strong>Last Name:</strong> {{ profile.user.last_name }}</p>
-                                            <p><strong>Email:</strong> {{ profile.user.email }}</p>
-                                            <p><strong>Phone:</strong> {{ profile.phone|default:"N/A" }}</p>
-                                            <p><strong>University:</strong> {{ profile.university_name|default:"N/A" }}</p>
-                                            <p><strong>Major:</strong> {{ profile.university_major_name|default:"N/A" }}</p>
-                                            <p><strong>Bio:</strong> {{ profile.bio|default:"N/A" }}</p>
+                                            <p><strong><i class="fas fa-user"></i> Name:</strong>
+                                                {% if profile.user.first_name %}
+                                                    {{ profile.user.first_name }} {{ profile.user.last_name }}
+                                                {% else %}
+                                                    {{ profile.user.username }} 
+                                                {% endif %}
+                                            </p>
+                                            <p><strong><i class="fas fa-envelope"></i> Email:</strong> {{ profile.user.email }}</p>
+                                            <p><strong><i class="fas fa-university"></i> University:</strong> {{ profile.university_name|default:"N/A" }}</p>
+                                            <p><strong><i class="fas fa-graduation-cap"></i> Specialization:</strong> {{ profile.university_major_name|default:"N/A" }}</p>
+                                            <p><strong><i class="fas fa-comment"></i> Bio:</strong> {{ profile.bio|default:"N/A" }}</p>
                                         </div>
                                     {% endif %}
                                 </div>
