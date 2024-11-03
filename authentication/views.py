@@ -5,6 +5,7 @@ from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+
 def login_view(request):
     form = LoginForm(request.POST or None)
     msg = None
@@ -50,9 +51,11 @@ def signup(request):
 
 @login_required
 def profile_view(request, user_id):
-    profile, created = Profile.objects.get_or_create(user_id=user_id)
+    profile = get_object_or_404(Profile, user_id=user_id)
 
-    if request.method == 'POST':
+    is_own_profile = request.user == profile.user
+
+    if request.method == 'POST' and is_own_profile:
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
@@ -63,4 +66,8 @@ def profile_view(request, user_id):
     else:
         form = ProfileForm(instance=profile)
 
-    return render(request, 'accounts/profile.html', {'profile': profile, 'form': form})
+    return render(request, 'accounts/profile.html', {
+        'profile': profile,
+        'form': form,
+        'is_own_profile': is_own_profile
+    })
