@@ -4,6 +4,7 @@ from .forms import LoginForm, SignUpForm, ProfileForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 def login_view(request):
@@ -11,14 +12,21 @@ def login_view(request):
     msg = None
     if request.method == "POST":
         if form.is_valid():
-            username = form.cleaned_data.get("username")
+            identifier = form.cleaned_data.get("identifier")
             password = form.cleaned_data.get("password")
+            
+            try:
+                user = User.objects.get(email=identifier)
+                username = user.username
+            except User.DoesNotExist:
+                username = identifier
+            
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect("/")
             else:
-                msg = 'Invalid username or password'
+                msg = 'Invalid username/email or password'
         else:
             msg = 'Error validating the form'
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
@@ -31,7 +39,9 @@ def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            Profile.objects.create(user=user)
+            
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
@@ -40,9 +50,9 @@ def signup(request):
             success = True
             login(request, user)
             return redirect('home')
-
         else:
-            msg = 'Form is not valid'
+            msg = ' '.join([str(e) for e in form.errors.values()])
+
     else:
         form = SignUpForm()
 
