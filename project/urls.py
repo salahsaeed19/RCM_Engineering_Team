@@ -11,7 +11,12 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('', include('ourteam.urls')),
     path('summaries/', include('engineering_summaries.urls')),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+else:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler500 = 'main.views.custom_500'
 handler404 = 'main.views.custom_404'

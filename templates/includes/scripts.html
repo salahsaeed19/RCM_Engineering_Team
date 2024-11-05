@@ -48,3 +48,31 @@
             });
         });
     </script>
+    <script>
+        function checkFile(input) {
+            const file = input.files[0];
+            if (file) {
+                const fileType = file.type;
+                const fileSize = file.size / 1024; // Size in kilobytes
+                let errorMessage = "";
+                if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
+                    errorMessage = "Only JPG and PNG file types are allowed.";
+                } else if (fileSize > 800) {
+                    errorMessage = "File size exceeds the limit of 800 KB.";
+                }
+                if (errorMessage) {
+                    const alertContainer = document.createElement("div");
+                    alertContainer.className = "alert alert-danger alert-dismissible fade show";
+                    alertContainer.setAttribute("role", "alert");
+                    alertContainer.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${errorMessage}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+                    document.getElementById("fileInfo").innerHTML = "";
+                    document.getElementById("fileInfo").appendChild(alertContainer);
+                    input.value = "";
+                } else {
+                    const fileInfo = `File name: ${file.name}<br>File size: ${fileSize.toFixed(2)} KB<br>File type: ${fileType}`;
+                    document.getElementById("fileInfo").innerHTML = fileInfo;
+                }
+            }
+        }
+    </script>
